@@ -3,6 +3,10 @@
 
 #include "permutations/Permutations.h"
 
+#define TYPE 1
+
+#if TYPE==0
+
 int main() {
 	int i;
 
@@ -81,3 +85,24 @@ void f(){
 	}
 
 }
+
+#else
+
+int main() {
+	int i;
+
+	Permutations p(0, 0, Permutations::PERMUTATIONS_WITHOUT_REPLACEMENTS);
+	printf("combinations=%2d ", p.number());
+	for (auto &v : p) {//v is std::vector<int>
+		i = 0;
+		printf("{");
+		for (int a : v) {
+			printf("%s%d", i ? " " : "", a);
+			i++;
+		}
+		printf("}");
+	}
+	printf("\n");
+
+}
+#endif
