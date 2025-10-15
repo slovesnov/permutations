@@ -11,9 +11,8 @@
 
 #include <vector>
 
-typedef std::vector<int> VInt;
-
 class Permutations {
+	using VInt = std::vector<int>;
 public:
 	/* Type
 	 * PERMUTATIONS_WITHOUT_REPLACEMENTS k-permutations of n without replacements. Number of combinations equals n!/(n-k)!
@@ -21,7 +20,9 @@ public:
 	 * COMBINATION k-combination of n items. Number of combinations equals n!/(n-k)!/k!
 	 */
 	enum Type {
-		PERMUTATIONS_WITHOUT_REPLACEMENTS, PERMUTATIONS_WITH_REPLACEMENTS, COMBINATION
+		PERMUTATIONS_WITHOUT_REPLACEMENTS,
+		PERMUTATIONS_WITH_REPLACEMENTS,
+		COMBINATION
 	};
 private:
 	class V: public VInt {
@@ -34,15 +35,15 @@ private:
 			VInt::resize(n);
 		}
 
-		const int*begin() const {
+		const int* begin() const {
 			return data();
 		}
 
-		const int*end() const {
+		const int* end() const {
 			return data() + k;
 		}
 
-		void operator=(VInt const& v){
+		void operator=(VInt const &v) {
 			VInt::operator=(v);
 		}
 
@@ -56,10 +57,11 @@ private:
 	void add();
 
 public:
-	Permutations(const int k=1, const int n=1, const Type type=COMBINATION) {
+	Permutations(const int k = 1, const int n = 1,
+			const Type type = COMBINATION) {
 		init(k, n, type);
 	}
-	void init(const int k=1, const int n=1, const Type type=COMBINATION);
+	void init(const int k = 1, const int n = 1, const Type type = COMBINATION);
 	bool next();
 	void reset();
 
@@ -103,18 +105,18 @@ public:
 		return *this;
 	}
 
-	struct State{
+	struct State {
 		int index;
-		VInt i,a;
+		VInt i, a;
 		int parameter;
 	};
 
-	void saveState(State& state)const;
-	void loadState(State const& state);
+	void saveState(State &state) const;
+	void loadState(State const &state);
 
 	template<typename F>
-	void forEach( F f ){
-		for (auto const&a : *this) {
+	void forEach(F f) {
+		for (auto const &a : *this) {
 			f(a);
 		}
 	}

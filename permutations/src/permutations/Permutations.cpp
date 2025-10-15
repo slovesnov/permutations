@@ -15,8 +15,7 @@ const int Permutations::number() const {
 		for (i = 0; i < k; i++) {
 			r *= n;
 		}
-	}
-	else if (type == COMBINATION) {
+	} else if (type == COMBINATION) {
 		/* for big n,k
 		 * C(n,k)=n*C(n-1,k-1)/k
 		 * C(n,k)=n*C(n-1,k-1)/k=(n/k)*(n-1/k-1)...(n-k+1/1)C(n-k,0); C(n-k,0)=1
@@ -25,8 +24,7 @@ const int Permutations::number() const {
 			r *= n - k + i;
 			r /= i;
 		}
-	}
-	else {
+	} else {
 		for (i = n - k + 1; i <= n; i++) {
 			r *= i;
 		}
@@ -39,10 +37,12 @@ void Permutations::init(const int _k, const int _n, Type _type) {
 	k = _k;
 	type = _type;
 
-	assert(k>=0 && n>=0 && "permutations. error n and k should be nonnegative");
+	assert(
+			k >= 0 && n >= 0
+					&& "permutations. error n and k should be nonnegative");
 #ifndef NDEBUG
-	if(type!=PERMUTATIONS_WITH_REPLACEMENTS) {
-		assert(n>=k && "permutations. error n<k");
+	if (type != PERMUTATIONS_WITH_REPLACEMENTS) {
+		assert(n >= k && "permutations. error n<k");
 	}
 #endif
 	i.resize(k, k);
@@ -53,7 +53,7 @@ void Permutations::init(const int _k, const int _n, Type _type) {
 }
 
 void Permutations::add() {
-	assert(k>0);
+	assert(k > 0);
 	int j = index;
 	int m, l;
 	i[j]++;
@@ -82,11 +82,9 @@ bool Permutations::next() {
 	for (j = k - 1; j >= 0; j--) {
 		if (type == PERMUTATIONS_WITHOUT_REPLACEMENTS) {
 			l = j;
-		}
-		else if (type == PERMUTATIONS_WITH_REPLACEMENTS) {
+		} else if (type == PERMUTATIONS_WITH_REPLACEMENTS) {
 			l = 0;
-		}
-		else {
+		} else {
 			l = k - 1 - j;
 		}
 		if (n - 1 != i[j] + l) {
@@ -103,7 +101,7 @@ bool Permutations::next() {
 }
 
 void Permutations::reset() {
-	if(k>0){
+	if (k > 0) {
 		index = 0;
 		i[0] = -1;
 		add();
@@ -111,20 +109,20 @@ void Permutations::reset() {
 }
 
 //Note. Tested only for type=COMBINATION
-void Permutations::saveState(State& state) const {
+void Permutations::saveState(State &state) const {
 	state.index = index;
 	state.i = i;
 	if (type == PERMUTATIONS_WITHOUT_REPLACEMENTS) {
-		state.a=a;
+		state.a = a;
 	}
 }
 
 //Note. Tested only for type=COMBINATION
-void Permutations::loadState(const State& state) {
+void Permutations::loadState(const State &state) {
 	index = state.index;
-	i=state.i;
+	i = state.i;
 	if (type == PERMUTATIONS_WITHOUT_REPLACEMENTS) {
-		a=state.a;
+		a = state.a;
 	}
 }
 

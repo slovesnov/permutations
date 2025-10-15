@@ -3,7 +3,7 @@
 
 #include "permutations/Permutations.h"
 
-#define TYPE 1
+#define TYPE 0
 
 #if TYPE==0
 
@@ -12,7 +12,7 @@ int main() {
 
 	Permutations p(2, 4, Permutations::PERMUTATIONS_WITHOUT_REPLACEMENTS);
 	printf("combinations=%2d ", p.number());
-	for (auto &v : p) {//v is std::vector<int>
+	for (auto &v : p) { //v is std::vector<int>
 		i = 0;
 		printf("{");
 		for (int a : v) {
@@ -51,7 +51,7 @@ int main() {
 
 }
 
-void f(){
+void f() {
 	int i;
 	Permutations::Type type[] = {
 			Permutations::PERMUTATIONS_WITHOUT_REPLACEMENTS,
@@ -74,7 +74,7 @@ void f(){
 	for (auto t : type) {
 		p.init(2, 4, t);
 		printf("combinations=%2d ", p.number());
-		for (auto& c : p) {
+		for (auto &c : p) {
 			i = 0;
 			for (int v : c) {
 				printf("%c%d", i++ ? ' ' : '{', v);
@@ -93,7 +93,7 @@ int main() {
 
 	Permutations p(0, 0, Permutations::PERMUTATIONS_WITHOUT_REPLACEMENTS);
 	printf("combinations=%2d ", p.number());
-	for (auto &v : p) {//v is std::vector<int>
+	for (auto &v : p) { //v is std::vector<int>
 		i = 0;
 		printf("{");
 		for (int a : v) {
