@@ -38,8 +38,7 @@ void Permutations::init(const int _k, const int _n, Type _type) {
 	type = _type;
 
 	assert(
-			k >= 0 && n >= 0
-					&& "permutations. error n and k should be nonnegative");
+			k >= 0 && n >= 0 && "permutations. error n and k should be nonnegative");
 #ifndef NDEBUG
 	if (type != PERMUTATIONS_WITH_REPLACEMENTS) {
 		assert(n >= k && "permutations. error n<k");
