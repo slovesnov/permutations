@@ -18,7 +18,7 @@ class Permutations {
 			for (i = 0; i < this.k; i++) {
 				r *= this.n;
 			}
-		} 
+		}
 		else if (this.isCombination()) {
 			/* for big n,k
 			 * C(n,k)=n*C(n-1,k-1)/k
@@ -33,7 +33,7 @@ class Permutations {
 			for (i = this.n - this.k + 1; i <= this.n; i++) {
 				r *= i;
 			}
-		}				
+		}
 		return r;
 	}
 
@@ -60,7 +60,7 @@ class Permutations {
 	}
 
 	reset() {
-		if(this.k != 0){
+		if (this.k != 0) {
 			//init indexes
 			this.index = 0;
 			this.i[0] = -1;
@@ -127,7 +127,7 @@ class Permutations {
 	}
 
 	getIndexes() {
-		return this.isWithoutPeplacements() ? this.a.slice(0, this.k) : this.i;
+		return this.isWithoutPeplacements() ? this.a.slice(0, this.k) : this.i.slice();
 	}
 
 	getIndex(i) {
@@ -152,7 +152,7 @@ class Permutations {
 			f(this.getIndexes())
 		} while (this.next())
 	}
-	
+
 	[Symbol.iterator]() {
 		let o = this
 		let f = true
@@ -172,5 +172,5 @@ class Permutations {
 			}
 		}
 	}
-	
+
 }
